@@ -15,5 +15,6 @@ Key packages: Signac, Seurat, ggplot2, GenomicRanges, TxDb.Hsapiens.UCSC.hg38.kn
 Peak calling: MACS3, run via Signac or batch script
 
 ## Notes
-Peak calling was performed on 89 colorectal cancer samples
-Only ##chromosome 1## was used in downstream analyses due to memory limitations
+Peak calling was performed on 89 colorectal cancer samples  
+
+Only **chromosome 1** was used in downstream analyses due to memory limitations
