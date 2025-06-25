@@ -6,8 +6,8 @@ This repository contains the full analysis code and data processing scripts for 
 The project systematically compares the impact of two peak calling strategies on:  
 *Peak length distribution  
 *Overlap with known regulatory elements (promoters and enhancers)  
-Peaks Overlap Comparison  
-Downstream analysis outcomes (Normalization, Dimensional Reduction, Clustering, Differential Accessibility)
+*Peaks Overlap Comparison  
+*Downstream analysis outcomes (Normalization, Dimensional Reduction, Clustering, Differential Accessibility)
 
 ## Tools & Packages
 R (v4.4.1)  
