@@ -10,8 +10,8 @@ Peaks Overlap Comparison
 Downstream analysis outcomes (Normalization, Dimensional Reduction, Clustering, Differential Accessibility)
 
 ## Tools & Packages
-R (v4.4.1)
-Key packages: Signac, Seurat, ggplot2, GenomicRanges, TxDb.Hsapiens.UCSC.hg38.knownGene, ENCODE(H3K27ac)
+R (v4.4.1)  
+Key packages: Signac, Seurat, ggplot2, GenomicRanges, TxDb.Hsapiens.UCSC.hg38.knownGene, ENCODE(H3K27ac)  
 Peak calling: MACS3, run via Signac or batch script
 
 ## Notes
