@@ -3,6 +3,8 @@ library(GenomicRanges)
 library(ggplot2)
 library(scales)  
 library(rtracklayer)
+library(patchwork)
+
 
 ######Promoter
 # Load all-samples peak data
@@ -77,7 +79,7 @@ df_peaks$fill_group <- with(df_peaks, ifelse(Method == "By Sample" & Type == "Ov
                                                     "Other peaks")))
 
 # Creating plot
-ggplot(df_peaks, aes(x = Method, y = Count, fill = fill_group)) +
+plot_promoter<-ggplot(df_peaks, aes(x = Method, y = Count, fill = fill_group)) +
   geom_bar(stat = "identity", color = "black") +
   geom_text(aes(label = Label),
             position = position_stack(vjust = 0.5),
@@ -98,7 +100,7 @@ ggplot(df_peaks, aes(x = Method, y = Count, fill = fill_group)) +
   theme_minimal() +
   theme(text = element_text(size = 14),
         legend.position = "right")  
-ggsave("/Users/yulongqiu/Desktop/Biostats/Master_Thesis/Output/promoter_peak_overlap.png",
+ggsave("/Users/yulongqiu/Desktop/Biostats/Master_Thesis/Output/promoter_peak_overlap.png",plot_promoter,
        width = 8, height = 6, dpi = 300)
 
 
@@ -166,7 +168,7 @@ df_enhancer$fill_group <- with(df_enhancer, ifelse(Method == "By Sample" & Type 
                                                           "Other peaks")))
 
 # Creating Plot
-ggplot(df_enhancer, aes(x = Method, y = Count, fill = fill_group)) +
+plot_enhancer<-ggplot(df_enhancer, aes(x = Method, y = Count, fill = fill_group)) +
   geom_bar(stat = "identity", color = "black") +
   geom_text(aes(label = Label),
             position = position_stack(vjust = 0.5),
@@ -188,7 +190,7 @@ ggplot(df_enhancer, aes(x = Method, y = Count, fill = fill_group)) +
   theme(text = element_text(size = 14),
         legend.position = "right",
         legend.title = element_blank())
-ggsave("/Users/yulongqiu/Desktop/Biostats/Master_Thesis/Output/enhancer_peak_overlap.png",
+ggsave("/Users/yulongqiu/Desktop/Biostats/Master_Thesis/Output/enhancer_peak_overlap.png",plot_enhancer,
        width = 8, height = 6, dpi = 300)
 
 
@@ -240,7 +242,7 @@ df_enhancer$fill_group <- with(df_enhancer, ifelse(Method == "By Sample" & Type 
                                                           "Other peaks")))
 
 # Creating Plot
-ggplot(df_enhancer, aes(x = Method, y = Count, fill = fill_group)) +
+plot_both<-ggplot(df_enhancer, aes(x = Method, y = Count, fill = fill_group)) +
   geom_bar(stat = "identity", color = "black") +
   geom_text(aes(label = Label),
             position = position_stack(vjust = 0.5),
@@ -262,8 +264,18 @@ ggplot(df_enhancer, aes(x = Method, y = Count, fill = fill_group)) +
   theme(text = element_text(size = 14),
         legend.title = element_blank(),
         legend.position = "right")
-ggsave("/Users/yulongqiu/Desktop/Biostats/Master_Thesis/Output/Enhancers_Promoters_peak_overlap.png",
+ggsave("/Users/yulongqiu/Desktop/Biostats/Master_Thesis/Output/Enhancers_Promoters_peak_overlap.png",plot_both,
        width = 8, height = 6, dpi = 300)
+
+###Mark ABC and display all the graphs as two in the first row and one in the second row
+combined_plot <- (
+  (plot_promoter | plot_enhancer) / 
+    (plot_both     | plot_spacer())
+) +
+  plot_layout(widths = c(1, 0.4)) +
+  plot_annotation(tag_levels = 'A')  # Automatically add A, B, and C
+
+
 
 
 
