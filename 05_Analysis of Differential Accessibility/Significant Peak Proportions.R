@@ -90,7 +90,7 @@ p<-ggplot(stacked_data, aes(x = method, y = yval, fill = fill_group)) +
       "Significant peaks (By Sample)"
     )
   ) +
-  labs(y = "# peaks", x = NULL, title = "Significant Peak Proportions") +
+  labs(y = "# peaks", x = NULL, title = "Proportion of Differentially Accessible Peaks Across Peak Calling Strategies") +
   theme_minimal() +
   theme(text = element_text(size = 14),
         legend.title = element_blank(),
